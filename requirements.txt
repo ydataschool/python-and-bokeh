@@ -1,0 +1,5 @@
+bokeh==1.2.0
+geopandas
+numpy
+pandas
+sodapy

@@ -1,0 +1,76 @@
+{% extends base %}
+
+{% block preamble %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat|Quicksand');
+        body {
+            font-family: "Quicksand";
+        }
+        .bk-root {
+            font-family: "Quicksand" !important;
+        }
+        .plot-tooltip {
+            margin: 10px;
+        }
+        .slick-header-columns, .slick-header-column {
+            background-color: #DDDDDD !important;
+            background-image: none !important;
+        }
+    </style>
+    <script>
+        function get_icon(type){
+            if (type.includes("car") || type.includes("motor")) {
+                return '<i class="fas fa-car"></i>'
+            }
+            else if (type.includes("aid") || type.includes("medic")) {
+                return '<i class="fas fa-briefcase-medical"></i>'
+            }
+            else if (type.includes("fire")) {
+                return '<i class="fas fa-fire"></i>'
+            }
+            else {
+                return '<i class="fas fa-question"></i>'
+            }
+        }
+    </script>
+
+{% endblock %}
+
+{% block contents%}
+    <div class="container">
+        <div class="row my-4">
+            <div class="col-3">
+                <h1>Seattle 911 calls</h1>
+            </div>
+            <div class="col-9">
+                <h4>
+                    Realtime feed of Seattle Fire Department responses.
+                </h4>
+                <p>
+                    This Bokeh application uses open data from Seattle via Socrata API. By default, it visualizes last hour of 
+                    responses.
+                </p>
+            </div>
+        </div>
+        <div class="row my-4">
+                <div class="col-6">
+                    {{ embed(roots.slider) }}
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ embed(roots.table) }}
+            </div>
+            <div class="col-6">
+                {{ embed(roots.stats_plot) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                {{ embed(roots.main_plot) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
